@@ -15,6 +15,35 @@ public class BMI {
 	
 		BMI = weight / (height * height);
 		
-		System.out.println("BMI = " + BMI);
+		if (BMI < 18.5)
+		{
+			System.out.println("BMI = " + BMI);
+			System.out.println("저체중입니다.");
+		}
+		else if (BMI >= 18.5 && BMI <= 22.9)
+		{
+			System.out.println("BMI = " + BMI);
+			System.out.println("정상입니다.");
+		}
+		else if (BMI >= 23 && BMI <= 24.9)
+		{
+			System.out.println("BMI = " + BMI);
+			System.out.println("비만전단계입니다.");
+		}
+		else if (BMI >= 25 && BMI <= 29.9)
+		{
+			System.out.println("BMI = " + BMI);
+			System.out.println("1단계비만입니다.");
+		}
+		else if (BMI >= 30 && BMI <= 34.9)
+		{
+			System.out.println("BMI = " + BMI);
+			System.out.println("2단계비만입니다.");
+		}
+		else if (BMI > 35)
+		{
+			System.out.println("BMI = " + BMI);
+			System.out.println("3단계비만입니다.");
+		}
 	}
 }
