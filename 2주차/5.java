@@ -73,7 +73,6 @@ public class BMI {
 					
 					else if (y1 < y2) // 우하향일 때
 					{
-						
 						for (int i = 0; i <= y2; i++)
 							canvas[y1 + i][x1 + i] = '*';
 					}
