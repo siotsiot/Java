@@ -39,7 +39,6 @@ public class draw {
 						y2 = sc.nextInt();
 					} while (x1 > SIZE);
 					
-					
 					if (x1 == x2) // 세로로 그릴 때
 					{
 						int dist = Math.abs(y2 - y1); // x1과 x2는 같으므로 y1과 y2의 차이 측정
