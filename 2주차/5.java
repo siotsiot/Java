@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class draw {
+public class BMI {
 	public static void main(String[] args) {
 		char[][] canvas = new char[5][5];
 		
@@ -29,15 +29,25 @@ public class draw {
 					break;
 				
 				case 1:
-					int x1, x2, y1, y2; //
-					do {
+					int x1, x2, y1, y2;
+					
+					while (true) // 캔버스 크기 넘으면 재입력하기
+					{
+						boolean flag1 = true;
 						System.out.print("첫 번재 점의 좌표: ");
 						x1 = sc.nextInt();
 						y1 = sc.nextInt();
 						System.out.print("두 번재 점의 좌표: ");
 						x2 = sc.nextInt();
 						y2 = sc.nextInt();
-					} while (x1 > SIZE);
+						
+						if (x1 > SIZE || y1 > SIZE || x2 > SIZE || y2 > SIZE)
+							flag1 = false;
+						if (flag1 == false)
+							System.out.println("캔버스 크기를 넘었습니다. 재입력하세요.");
+						else if (flag1 = true)
+							break;
+					}
 					
 					if (x1 == x2) // 세로로 그릴 때
 					{
@@ -99,7 +109,6 @@ public class draw {
 				default:
 					break;
 			}
-			
 			if (flag == false)
 				break;
 			
