@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class draw {
-
 	public static void main(String[] args) {
-		
 		char[][] canvas = new char[5][5];
 		
 		Scanner sc = new Scanner(System.in);
@@ -102,6 +100,7 @@ public class draw {
 				default:
 					break;
 			}
+			
 			if (flag == false)
 				break;
 			
