@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BMI {
+public class draw {
 	public static void main(String[] args) {
 		char[][] canvas = new char[5][5];
 		
