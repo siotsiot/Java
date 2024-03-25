@@ -74,7 +74,10 @@ public class AccountTest {
 				case 3: // 잔액 조회
 					System.out.println("잔액: " + obj.getBalance());
 					break;
-				
+
+				case 4: // 종료
+					break;
+					
 				default:
 					System.out.println("번호를 다시 입력해주세요.");
 					break;
