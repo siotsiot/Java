@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 // 플레이어 클래스
@@ -7,7 +6,7 @@ class Player {
     private String name;
     private int health; // 플레이어 체력
     private Weapon currentWeapon; // 현재 무기
-    private List<Weapon> weapons; // 무기 리스트
+    private ArrayList<Weapon> weapons; // 무기 리스트
 
     public Player(String name) {
         this.name = name; // 플레이어 이름 설정
@@ -20,14 +19,14 @@ class Player {
     // 몬스터를 공격
     public void attack(Enemy enemy) {
         int damage = currentWeapon.getDamage();
-        System.out.println(name + "가 " + enemy.getName() + "을(를) " + currentWeapon.getName() + "로 공격하여 " + damage + "의 피해를 입혔습니다.");
+        System.out.println("\n" + name + "가 " + enemy.getName() + "을(를) " + currentWeapon.getName() + "(으)로 공격하여 " + damage + "의 피해를 입혔습니다.");
         enemy.takeDamage(damage);
     }
 
     // 몬스터의 체력을 감소
     public void takeDamage(int damage) {
         health -= damage;
-        System.out.println(name + "이(가)  " + damage + "의 피해를 입었습니다.");
+        System.out.println(name + "이(가) " + damage + "의 피해를 입었습니다.");
         if (health <= 0) {
             System.out.println(name + "이(가) 패배하였습니다!");
         }
@@ -47,7 +46,7 @@ class Player {
             System.out.println((i + 1) + ". " + weapons.get(i).getName());
         }
         
-        System.out.print("사용할 무기를 선택하세요:");
+        System.out.print("사용할 무기를 선택하세요: ");
         int choice = scanner.nextInt();
         this.currentWeapon = weapons.get(choice - 1); // 사용자가 선택한 번호의 무기 선택(배열이므로 -1한 값을 인덱싱, get 메서드는 위 참고)
     }
@@ -139,25 +138,25 @@ public class Test {
         String playerName = scanner.nextLine();
 
         Player player = new Player(playerName); // 플레이어 객체 생성
-        
+
         // Enemy 생성자를 통해 이름, 체력, 공격력 초기화
         Enemy[] enemies = {
             new Enemy("고블린", 20, 10),
             new Enemy("좀비", 30, 15),
             new Enemy("데몬", 50, 20),
             new Enemy("히드라", 70, 25),
-            new Enemy("드레곤", 90, 30)
+            new Enemy("드레곤", 90, 27)
         };
-        
+
         // 무기 리스트
         Weapon[] weapons = {
             new Weapon("검", 10),
             new Weapon("도끼", 15),
             new Weapon("활", 20),
             new Weapon("마법 지팡이", 25),
-            new Weapon("전설적인 검", 30)
+            new Weapon("전설의 검", 30)
         };
-        
+
         // 방 번호 초기화
         int currentRoom = 0;
 
@@ -166,16 +165,19 @@ public class Test {
             player.resetHealth(); // 방에 들어갈 때마다 플레이어의 체력 초기화
 
             // 적을 현재 방 번호의 적으로 설정
+            System.out.println("=============================");
             Enemy enemy = enemies[currentRoom];
-            System.out.println("방 " + (currentRoom + 1) + "에 들어왔고 " + enemy.getName() + "을(를) 만났습니다!");
-
+            System.out.println("방 번호: " + (currentRoom + 1));
+            System.out.println(enemy.getName() + "을(를) 만났습니다!");
+            System.out.println("=============================");
             player.selectWeapon(); // 전투 전 무기 선택
 
             // 몬스터와 플레이어 둘 다 살아 있을 때
             while (enemy.isAlive() && player.isAlive()) {
-                System.out.println("당신의 체력: " + player.getHealth());
-                System.out.println("적의 체력: " + enemy.getHealth());
-
+                System.out.println("===================");
+                System.out.println(playerName + "의 체력: " + player.getHealth());
+                System.out.println(enemy.getName() + "의 체력: " + enemy.getHealth());
+                System.out.println("===================");
                 System.out.println("1. 공격");
                 System.out.println("2. 종료");
                 System.out.print("행동을 선택하세요: ");
@@ -186,17 +188,16 @@ public class Test {
                     if (enemy.isAlive()) {
                         enemy.attack(player);
                     }
-                }
-                
-                else if (choice == 2) {
-                    System.out.println("게임을 종료합니다.");
+                } else if (choice == 2) {
+                    System.out.print("게임을 종료합니다.");
                     return; // main() 메서드 종료할 때 사용
                 }
             }
-            player.addWeapon(weapons[currentRoom + 1]); // 적 처치 후 새로운 무기 획득
+            if (currentRoom < enemies.length - 1) {
+                player.addWeapon(weapons[currentRoom + 1]); // 적 처치 후 새로운 무기 획득
+            }
             currentRoom++;
         }
-        scanner.close();
-        System.out.println("게임 종료!");
+        System.out.print("!!축하드립니다. 게임을 전부 이겼습니다!!");
     }
 }
